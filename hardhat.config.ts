@@ -7,13 +7,13 @@ const config: HardhatUserConfig = {
   etherscan: {
     apiKey:
       {
-        shimmerevmtest: "xxx"
+        shimmerevmtestnet: "xxx"
       },
     customChains: [
       {
         apikey: "xxx",
         network: "shimmerevmtestnet",
-        chainId: 1071,
+        chainId: 1072,
         urls: {
           apiURL: "https://explorer.evm.testnet.shimmer.network/api",
           browserURL: "https://explorer.evm.testnet.shimmer.network/"
@@ -24,7 +24,7 @@ const config: HardhatUserConfig = {
   networks: {
     shimmerevmtestnet: {
         url: 'https://json-rpc.evm.testnet.shimmer.network',
-        chainId: 1071,
+        chainId: 1072,
         timeout: 60000
     }
   }

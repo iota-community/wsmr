@@ -47,29 +47,20 @@ contract wSMR is ERC20, ERC20Votes {
         super._burn(account, amount);
     }
     
-    // We use 6 decimals given the native SMR token has no more
-    function decimals() public view virtual override(ERC20) returns (uint8) {
-        return 6;
-    }  
-    
     // Convert to wSMR if someone sends SMR to this contract address instead of calling deposit
     receive() external payable {
         deposit();
     }
 
-    // The Native EVM Token always has 18 decimals, this is what clients expect.
-    // Given SMR only has 6, the decimals are padded for the native asset to 18 decimals
-    // When converting between native asset and wSMR we fix the decimals so they are
-    // aligned with the actual SMR asset.
     function deposit() public payable {
-        _mint(msg.sender, msg.value / 1e12);
-        emit Deposit(msg.sender, msg.value / 1e12);
+        _mint(msg.sender, msg.value);
+        emit Deposit(msg.sender, msg.value);
     }
 
     function withdraw(uint wad) public {
         require(balanceOf(msg.sender) >= wad, "Not enough wSMR to Withdraw");
         _burn(msg.sender, wad);
-        payable(msg.sender).transfer(wad * 1e12);
+        payable(msg.sender).transfer(wad);
         emit Withdrawal(msg.sender, wad);
     }
 

@@ -17,7 +17,7 @@ describe("wSMR basic testing", function() {
         mc = await token.deploy();
 
         nativeSmrBase = ethers.BigNumber.from("1000000000000000000")
-        wSmrBase = ethers.BigNumber.from("1000000")
+        wSmrBase =      ethers.BigNumber.from("1000000000000000000")
 
         signers = await ethers.getSigners();
         [owner, addr1, addr2, addr3, addr4]  = signers.slice(0, 5);
@@ -27,7 +27,7 @@ describe("wSMR basic testing", function() {
     it("Check if token settings are as expected", async function() {
         expect(await mc.name()).to.equal("wSMR");
         expect(await mc.symbol()).to.equal("wSMR");
-        expect(await mc.decimals()).to.equal(6);
+        expect(await mc.decimals()).to.equal(18);
     });
     
     it("Sending some tokens to wSMR", async function() {
